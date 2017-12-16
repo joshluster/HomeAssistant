@@ -1,0 +1,56 @@
+#################################################################
+## Notifications
+#################################################################
+- alias: Notify iOS app
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: notify.ios_josh_phone
+    data:
+      message: "Finished starting Home Assistant"
+
+- alias: Notify Elizabeths door
+  trigger:
+    platform: state
+    entity_id: binary_sensor.elizabeths_door_opened
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '07:00:00'
+  action:
+    service: notify.allphones
+    data:
+      message: "Elizabeths door has opened!"
+
+- alias: Notify Wyatts door
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wyatt_door_opened
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '07:00:00'
+  action:
+    service: notify.allphones
+    data:
+      message: "Time to start the day, Wyatts awake!"
+
+- alias: Notify Wyatts door nap time
+  trigger:
+    platform: state
+    entity_id: binary_sensor.wyatt_door_opened
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: time
+    after: '13:00:00'
+    before: '16:00:00'
+  action:
+    service: notify.allphones
+    data:
+      message: "Nap times over!"

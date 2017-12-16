@@ -1,0 +1,11 @@
+scene:
+  - name: Elizabeth bedtime
+    entities:
+      light.elizabeth_fan:
+        state: off
+        transition: 10
+      light.elizabeths_night_lights:
+        state: on
+        transition: 10
+        color_name: 'pink'
+        brightness: 10

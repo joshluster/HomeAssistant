@@ -1,0 +1,14 @@
+###################################
+#Obtains environmental information#
+#and presents it as sensor reading#
+###################################
+
+- platform: yweather
+- platform: wunderground
+  api_key: !secret weather_key
+  monitored_conditions:
+    - weather_1d
+    - weather_2d
+    - weather_3d
+    - weather
+    

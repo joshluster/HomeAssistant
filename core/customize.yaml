@@ -1,0 +1,49 @@
+binary_sensor.wyatt_door_opened:
+  friendly_name: Wyatt Door
+binary_sensor.kidshall_motion:
+  friendly_name: "Kids hall Motion"
+  device_class: motion
+binary_sensor.kitchenhue_motion:
+  friendly_name: "Kitchen"
+  device_class: motion
+binary_sensor.frontroom_motion:
+  friendly_name: "Front Room Motion"
+  device_class: motion
+switch.kids_waves:
+  icon: mdi:waves
+switch.room_ac:
+  icon: mdi:air-conditioner
+switch.room_heater:
+  icon: mdi:radiator
+light.joshs_lamp:
+  icon: mdi:lamp
+light.leighs_lamp:
+  icon: mdi:lamp
+light.bedroom_fan:
+  icon: mdi:ceiling-light
+switch.flood_lights:
+  icon: mdi:spotlight-beam
+light.wyatts_night_lights:
+  icon: mdi:sleep
+light.elizabeths_night_lights:
+  icon: mdi:sleep
+light.elizabeth_fan:
+  icon: mdi:ceiling-light
+light.wyatts_fan:
+  icon: mdi:ceiling-light
+light.our_bedroom:
+  icon: mdi:hotel
+light.office:
+  icon: mdi:desktop-mac
+light.kitchen_table:
+  icon: mdi:silverware-variant
+light.kitchen:
+  icon: mdi:fridge
+light.family_room:
+  icon: mdi:sofa
+light.laundry:
+  icon: mdi:washing-machine
+light.front:
+  icon: mdi:sofa
+light.outside:
+  icon: mdi:spotlight-beam

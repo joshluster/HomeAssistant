@@ -1,0 +1,12 @@
+################################
+#Sets the correct scene for the#
+#landing light when auto-on    #
+################################
+
+wyatt_bedtime:
+  sequence:
+    - service: scene.turn_on
+      entity_id: scene.wyatt_bedtime
+    - service: switch.turn_on
+      data:
+        entity_id: switch.kids_waves

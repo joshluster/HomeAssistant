@@ -1,0 +1,44 @@
+#################################################################
+## Zones
+#################################################################
+
+#Leigh Work
+  - name: Leigh Work
+    latitude: 33.389923
+    longitude: -111.877426
+    radius: 300
+    icon: mdi:hospital
+
+#Leigh Clinical
+  - name: Leigh Clinical
+    latitude: 33.437611452630385
+    longitude: -111.7673386122027
+    radius: 300
+    icon: mdi:stethoscope
+
+#Josh Work
+  - name: Josh work
+    latitude: 33.429946
+    longitude: -111.933183
+    radius: 300
+    icon: mdi:briefcase
+
+#Larry and Dana's
+  - name: Larry and Danas
+    latitude: 33.491783
+    longitude: -111.686110
+    radius: 300
+    icon: mdi:home-heart
+
+#Elizabeth School
+  - name: Elizabeths School
+    latitude: 33.483132
+    longitude: -111.685516
+    radius: 300
+    icon: mdi:school
+#Wyatt School
+  - name: Wyatts daycare
+    latitude: 33.409387
+    longitude: -111.691928
+    radius: 300
+    icon: mdi:school

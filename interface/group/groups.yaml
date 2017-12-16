@@ -1,0 +1,248 @@
+#################################################################
+## Views
+#################################################################
+
+default_view:
+  name: Home
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.family
+    - group.housestatus
+    - group.alllights
+    - group.local
+    - group.weather
+
+rooms_view:
+  name: Rooms
+  view: yes
+  icon: mdi:floor-plan
+  entities:
+    - group.master_bedroom
+    - group.master_bathroom
+    - group.kitchen
+    - group.house_lights
+    - group.office
+    - group.front_room
+    - group.family_room
+    - group.elizabeths_room
+    - group.wyatts_room
+    - group.outside
+
+media_view:
+  name: Media
+  view: yes
+  icon: mdi:airplay
+  entities:
+    - group.mediaplayers
+
+security_view:
+  name: Security
+  view: yes
+  icon: mdi:pulse
+  entities:
+    - lock.lock
+    - group.garage
+    - group.doors
+    - group.motion
+    - group.arlocamera
+
+system_view:
+  name: System
+  view: yes
+  icon: mdi:gauge
+  entities:
+    - group.info
+    - group.netinfo
+
+#################################################################
+## Home
+#################################################################
+
+family:
+  name: Family
+  entities:
+    - device_tracker.josh_phone
+    - device_tracker.leigh_iphone
+
+alllights:
+  name: Room Lights
+  entities:
+    - light.kitchen
+    - light.kitchen_table
+    - light.family_room
+    - light.office
+    - light.front
+    - light.our_bedroom
+    - light.master_bath_2
+    - light.elizabeths_room
+    - light.wyatts_room
+    - light.bathroom
+    - light.outside
+
+housestatus:
+  name: House Status
+  entities:
+    - climate.my_ecobee
+    - sensor.my_ecobee_temperature
+    - sensor.bedroom_temperature
+    - sensor.elizabeths_room_temperature
+    - sensor.wyatts_room_temperature
+    - alarm_control_panel.house_cameras
+    - lock.lock
+
+local:
+  name: Local Info
+  entities:
+    - sensor.crimereports
+
+weather:
+  name: weather
+  entities:
+    - weather.yweather
+
+#################################################################
+## Rooms
+#################################################################
+master_bedroom:
+  name: Master Bedroom
+  control: hidden
+  entities:
+    - sensor.bedroom_temperature
+    - light.joshs_lamp
+    - light.leighs_lamp
+    - light.hue_go
+    - light.bedroom_fan
+    - switch.room_ac
+
+master_bathroom:
+  name: Master Bathroom
+  control: hidden
+  entities:
+    - light.master_bath
+    - light.vanity_light
+
+kitchen:
+  name: Kitchen
+  control: hidden
+  entities:
+    - light.kitchen
+    - light.kitchen_table
+    - light.cabinet_light
+    - light.pantry
+
+family_room:
+  name: Family Room
+  control: hidden
+  entities:
+   - light.family_room
+   - vacuum.roomba
+
+office:
+  name: Office
+  control: hidden
+  entities:
+    - light.office
+    - light.desk
+
+front_room:
+  name: Front Room
+  control: hidden
+  entities:
+    - light.front
+    - light.formal_dining_light
+
+house_lights:
+  name: House Lights
+  control: hidden
+  entities:
+    - light.laundry
+    - light.kids_bath
+
+elizabeths_room:
+  name: Elizabeths Room
+  control: hidden
+  entities:
+    - sensor.elizabeths_room_temperature
+    - light.elizabeth_fan
+    - light.elizabeths_night_lights
+
+
+wyatts_room:
+  name: Wyatts Room
+  control: hidden
+  entities:
+    - sensor.wyatts_room_temperature
+    - light.wyatts_fan
+    - light.wyatts_night_lights
+
+outside:
+  name: Outside
+  control: hidden
+  entities:
+    - light.outside
+    - switch.front_porch
+    - switch.flood_lights
+
+#################################################################
+## media
+#################################################################
+
+mediaplayers:
+  name: Whats on TV
+  control: hidden
+  entities:
+    - media_player.living_room_tv
+    - media_player.notifications
+    - media_player.bedroom__speaker
+    - media_player.bedroom
+
+#################################################################
+## Security
+#################################################################
+
+garage:
+  name: Garage
+  entities:
+    - cover.garage_door
+    - switch.garage_lights
+
+doors:
+  name: Door Status
+  entities:
+    - binary_sensor.elizabeths_door_opened
+    - binary_sensor.front_door_opened
+    - binary_sensor.sensor_opened
+
+motion:
+  name: Motion Sensors
+  entities:
+    - binary_sensor.front_walkway_motion
+    - binary_sensor.kitchen_motion
+    - binary_sensor.back_door_motion
+    - binary_sensor.wyatts_room_motion
+    - binary_sensor.kidshall_motion
+    - binary_sensor.kitchenhue_motion
+    - binary_sensor.frontroom_motion
+
+arlocamera:
+  name: Cameras
+  entities:
+    - alarm_control_panel.house_cameras
+    - camera.front_entry
+    - camera.front_door
+    - camera.room
+    - camera.back_porch
+    - camera.family_room
+
+#################################################################
+## System
+#################################################################
+
+info:
+  name: System Stats
+  entities:
+    - sensor.uptime
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.ssl_certificate_expiry

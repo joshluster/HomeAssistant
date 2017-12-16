@@ -1,0 +1,71 @@
+########################################
+#An quick timer that announces over the#
+#chromecasts when it gets to zero      #
+########################################
+
+homeassistant:
+  customize:
+    sensor.timer_minutes:
+      hidden: true
+
+input_number:
+  timer_minutes:
+    name: Minutes
+    icon: mdi:timer
+    initial: 0
+    min: 0
+    max: 60
+    step: 1
+
+sensor:
+  - platform: template
+    sensors:
+      timer_minutes:
+        friendly_name: 'Timer minutes'
+        value_template: '{{states.input_number.timer_minutes.state|round(2)}}'
+        entity_id: 
+          - input_number.timer_minutes
+
+script:
+  timer:
+    sequence:
+    - delay: '00:00:15'
+    - service: input_number.set_value
+      data_template:
+        value: '{{ states.input_number.timer_minutes.state|float - 0.25 }}'
+        entity_id: input_number.timer_minutes
+
+automation:
+  - alias: 'timer'
+    trigger:
+      platform: state
+      entity_id: input_number.timer_minutes
+    condition:
+      - condition: template
+        value_template: '{{ states.input_number.timer_minutes.state|float > 0}}'
+    action:
+      - service: script.turn_off
+        entity_id: script.timer
+      - service: script.timer
+      
+  - alias: 'timer execute'
+    trigger:
+      platform: state
+      entity_id: input_number.timer_minutes
+    condition:
+      - condition: template
+        value_template: '{{ states.input_number.timer_minutes.state|float == 0.25}}'
+    action:
+      - service: notify.telegram_josh
+        data:
+          message: "The timer has expired - Home Assistant"
+      - service: tts.google_say
+        entity_id: media_player.notifications
+        data:
+          message: 'The timer has expired, The timer has expired'
+
+group:
+  quick_timer:
+    name: 'Timer'
+    entities:
+      - input_number.timer_minutes

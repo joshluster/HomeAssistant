@@ -1,0 +1,49 @@
+###################################
+#Obtains information from various #
+#services and presents them as    #
+#sensor readings                  #
+###################################
+
+- platform: version
+  name: Installed HA version
+
+- platform: cert_expiry
+  host: !secret base_url
+
+- platform: rest
+  resource: https://pypi.python.org/pypi/homeassistant/json
+  name: HA upstream
+  value_template: '{{ value_json.info.version }}'
+  scan_interval: 3600
+
+- platform: haveibeenpwned
+  email: !secret haveibeenpwned_email
+
+- platform: crimereports
+  radius: 2500
+  name: crimereports
+  exclude: ['Community Policing']
+
+- platform: google_travel_time
+  api_key: !secret google_travel_time_key
+  origin: device_tracker.josh_phone
+  destination: zone.home
+
+- platform: google_travel_time
+  api_key: !secret google_travel_time_key
+  origin: device_tracker.josh_phone
+  destination: zone.josh_work
+
+- platform: google_travel_time
+  api_key: !secret google_travel_time_key
+  origin: zone.home
+  destination: zone.josh_work
+  
+- platform: google_geocode
+  name: Josh
+  origin: device_tracker.josh_phone
+  options: street, city
+  
+
+#- platform: travisci
+#  api_key: !secret sensor_travisci
