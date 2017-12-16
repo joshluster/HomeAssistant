@@ -1,0 +1,139 @@
+#################################################################
+## Home Assistant
+#################################################################
+homeassistant: !include core/homeassistant.yaml
+frontend:
+  themes: !include components/themes.yaml
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
+  javascript_version: latest
+
+config:
+map:
+discovery:
+history:
+updater:
+http: !include interface/http.yaml
+logbook: !include interface/logbook.yaml
+recorder:
+  purge_interval: 7
+  purge_keep_days: 14
+
+panel_iframe:
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret ide_url
+
+#################################
+###       COMPONENTS          ###
+#################################
+
+ios:
+wink:
+#zwave:
+#  usb_path: /dev/ttyACM0
+light:
+  platform: hue
+  host: 192.168.1.110
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+tts:
+  - platform: google
+ifttt:
+  key: !secret iftttkey
+ecobee:
+  api_key: !secret ecokey
+  hold_temp: True
+
+switch:
+  - platform: broadlink
+    friendly_name: Bedroom Remote
+    host: 192.168.1.142
+    mac: '34:ea:34:8e:e7:b7'
+  - platform: broadlink
+    friendly_name: Family Room Remote
+    host: 192.168.1.143
+    mac: '34:ea:34:90:f7:95'
+
+wemo:
+  static:
+    - 192.168.1.38
+    - 192.168.1.66
+    - 192.168.1.40
+    - 192.168.1.152
+
+binary_sensor:
+  - platform: rest
+    name: frontroom_motion
+    resource: !secret hue_url_front_motion
+    value_template: '{{ value_json.state.presence }}'
+    scan_interval: 10
+  - platform: rest
+    name: kitchenhue_motion
+    resource: !secret hue_url_kitchen_motion
+    value_template: '{{ value_json.state.presence }}'
+    scan_interval: 10
+  - platform: rest
+    name: kidshall_motion
+    resource: !secret hue_url_kidshall_motion
+    value_template: '{{ value_json.state.presence }}'
+    scan_interval: 10
+
+arlo:
+  username: !secret arlomail
+  password: !secret arlopass
+alarm_control_panel:
+  - platform: arlo
+camera:
+  - platform: arlo
+    ffmpeg_arguments: '-pred 1 -q:v 2'
+
+device_tracker:
+  - platform: bluetooth_tracker
+  - platform: owntracks_http
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_bot_api_key_josh
+    parse_mode: html
+    allowed_chat_ids:
+      - !secret telegram_bot_chat_id_josh
+
+notify:
+  - name: push_notify
+    platform: pushbullet
+    api_key: !secret pushbullet_key
+  - platform: telegram
+    name: telegram_josh
+    chat_id: !secret telegram_bot_chat_id_josh
+  - name: allphones
+    platform: group
+    services:
+      - service: ios_josh_phone
+      - service: ios_leigh_iphone
+
+google:
+  client_id: !secret googleid
+  client_secret: !secret googlesecret
+  
+vacuum:
+  - platform: roomba
+    host: 192.168.1.148
+    username: !secret roombaname
+    password: !secret roombapassword
+
+media_player: !include components/media_player.yaml
+sensor: !include_dir_merge_list components/sensor/
+weblink: !include components/weblink.yaml
+
+#######################################
+## My automations/scripts/scenes/etc ##
+#######################################
+group: !include components/groups.yaml
+zone: !include components/zones.yaml
+automation: !include etc/automation/automations.yaml
+scene: !include_dir_merge_named /etc/scene/
+script: !include_dir_merge_named /etc/script/
+#input_boolean: !include config/etc/input_boolean.yaml
+#input_select: !include config/etc/input_select.yaml
+#shell_command: !include config/etc/shell_command.yaml

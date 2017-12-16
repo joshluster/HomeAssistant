@@ -1,0 +1,36 @@
+
+- cal_id: joshluster@gmail.com
+  entities:
+  - device_id: josh_luster
+    name: Josh Luster
+    track: true
+
+- cal_id: lceichen@gmail.com
+  entities:
+  - device_id: lceichengmailcom
+    name: lceichen@gmail.com
+    track: true
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_states
+    name: Holidays in United States
+    track: true
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true
+
+- cal_id: nfl_22_%41rizona+%43ardinals#sports@group.v.calendar.google.com
+  entities:
+  - device_id: arizona_cardinals
+    name: Arizona Cardinals
+    track: true
+
+- cal_id: lsnvsd19i30djqpeglc4tfhupg@group.calendar.google.com
+  entities:
+  - device_id: wonderful_god_damn_shared_calendar
+    name: Wonderful God Damn Shared Calendar
+    track: true

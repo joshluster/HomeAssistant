@@ -1,0 +1,4 @@
+device_tracker.josh_phone:
+  entity_picture: local/josh.jpg
+device_tracker.leigh_iphone:
+  entity_picture: local/leigh.jpg
